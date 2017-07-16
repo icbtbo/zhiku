@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+.word{color: #33CCFF}
+</style>
+</head>
+<body style = "background-image:url(/static/background.jpg);background-position:center;background-repeat:repeat-x,repeat-y;">
+<div id="Login">
+<h1>欢迎来到张组长的留言板</h1>
+<h2>在这里您可以畅所欲言！</h2>
+<form action="{{url_for('add_entry')}}" method="post">
+<input type="text" required="required" placeholder="姓名" name="name" style = "margin-left:585px;margin-top:100px;"></input>
+<div style ="text-align:center;">
+<textarea cols="50" rows="10" name="text" placeholder="请在此次输入留言内容" style = "margin-top:30px;"></textarea>
+</div>
+<button class="bt" type="submit"s style="margin-left:585px;">share</button>
+
+{% for msg in get_flashed_messages() %}
+<div>{{msg}}</div>
+{% endfor %}
+<div class="word">
+<ul>
+{% for entry in entries %}
+    <strong>姓名：</strong><li>{{entry['name']}}</li>
+    <strong>留言内容：</strong><li>{{entry['text']}}</li>
+{% endfor %}
+</ul>
+</div>
+</form>
+</div>
+</body>
+</html>
